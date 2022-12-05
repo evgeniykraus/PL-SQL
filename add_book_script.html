@@ -1,0 +1,58 @@
+<!DOCTYPE_ID html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <script>
+            function getRandomArbitrary(min, max) {
+                return Math.floor((Math.random() * (max - min) + min));
+            }
+
+            function dateRND() {
+                BDay = new Date(getRandomArbitrary(dataStart, dataEnd))
+                console.log(BDay.getFullYear())
+                do {
+                    RegDate = new Date(getRandomArbitrary(dataStart, 1640970000000))
+                } while (RegDate.getFullYear() < (BDay.getFullYear() + 10))
+                DateR = `'${BDay.getFullYear()}-${BDay.getMonth() + 1}-${BDay.getDate()} 00:00:00'`
+                return DateR
+            }
+
+            function GenerateReaders(amount) {
+                for (let i = 0; i < amount / 2; i++) {
+                    document.write(`add_reader_pkg.add_reader('${nameM[getRandomArbitrary(0, nameM.length)]}','${famM[getRandomArbitrary(0, famM.length)]}',TO_DATE(${dateRND()}));` + '<br>');
+                    document.write(`add_reader_pkg.add_reader('${nameF[getRandomArbitrary(0, nameF.length)]}','${famF[getRandomArbitrary(0, famF.length)]}',TO_DATE(${dateRND()}));` + '<br>');
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+
+    </body>
+
+    </html>
+
+<script>
+    function getRandomArbitrary(min, max) {
+        return Math.floor((Math.random() * (max - min) + min));
+    }
+    let dataStart = -788915722000;
+    let dataEnd = 1325350800000;
+    function dateRND(dataStart, dataEnd) {
+        let birthdDay = new Date(getRandomArbitrary(dataStart, dataEnd))
+        return birthdDay;
+    }
+
+    function GenerateReaders(amount) {
+        for (let i = 0; i < amount / 2; i++) {
+            document.write(`add_reader_pkg.add_reader('${nameM[getRandomArbitrary(0, nameM.length)]}','${famM[getRandomArbitrary(0, famM.length)]}',TO_DATE(${dateRND(dataStart, dataEnd)}));` + '<br>');
+            document.write(`add_reader_pkg.add_reader('${nameF[getRandomArbitrary(0, nameF.length)]}','${famF[getRandomArbitrary(0, famF.length)]}',TO_DATE(${dateRND(dataStart, dataEnd)}));` + '<br>');
+        }
+    }
+</script>
+

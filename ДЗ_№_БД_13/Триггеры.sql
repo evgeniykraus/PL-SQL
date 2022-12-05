@@ -1,0 +1,35 @@
+--Выдача книги
+CREATE OR REPLACE TRIGGER GIVE_THE_BOOK AFTER
+    INSERT ON JOURNAL FOR EACH ROW
+DECLARE
+    V_RESUL NUMBER;
+BEGIN
+    SELECT
+        BOOKS.STOCK_ID INTO V_RESUL
+    FROM
+        BOOKS
+    WHERE
+        BOOKS.ID = :NEW.BOOK_ID;
+    UPDATE STOCK
+    SET
+        AMOUNT = AMOUNT - 1
+    WHERE
+        STOCK.ID = V_RESUL;
+END;
+ -----------------------------------------------------------------------
+ --Возврат книги
+ CREATE OR REPLACE TRIGGER RETURN_THE_BOOK AFTER
+UPDATE ON JOURNAL FOR EACH ROW DECLARE V_RESUL NUMBER;
+BEGIN
+    SELECT
+        BOOKS.STOCK_ID INTO V_RESUL
+    FROM
+        BOOKS
+    WHERE
+        BOOKS.ID = :NEW.BOOK_ID;
+    UPDATE STOCK
+    SET
+        AMOUNT = AMOUNT + 1
+    WHERE
+        STOCK.ID = V_RESUL;
+END;
